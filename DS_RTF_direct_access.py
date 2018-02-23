@@ -4,7 +4,7 @@ import requests
 import base64 
 
 consumerKey = "CONSUMER KEY" 
-consumerSecret = "CONSUMER SECRET" 
+consumerSecret = "SECRET KEY" 
 
 keySecret = (consumerKey + ":" + consumerSecret).encode('utf-8')
 consumerKeySecretB64 = base64.b64encode(keySecret).decode('utf-8') 
