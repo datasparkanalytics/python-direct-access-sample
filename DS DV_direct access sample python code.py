@@ -1,11 +1,10 @@
-from datetime 
-import datetime 
+from datetime import datetime 
 import json, ast 
 import requests 
 import base64 
 
 consumerKey = "CONSUMER KEY" 
-consumerSecret = "CONSUMER SECRET KEY" 
+consumerSecret = "CONSUMER SECRET" 
 
 keySecret = (consumerKey + ":" + consumerSecret).encode('utf-8')
 consumerKeySecretB64 = base64.b64encode(keySecret).decode('utf-8') 

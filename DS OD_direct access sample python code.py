@@ -1,11 +1,10 @@
-from datetime 
-import datetime 
+from datetime import datetime 
 import json, ast 
 import requests 
 import base64 
 
 consumerKey = "CONSUMER KEY" 
-consumerSecret = "CONSUMER SECRET KEY" 
+consumerSecret = "CONSUMER SECRET" 
 
 keySecret = (consumerKey + ":" + consumerSecret).encode('utf-8')
 consumerKeySecretB64 = base64.b64encode(keySecret).decode('utf-8') 
@@ -43,6 +42,6 @@ queryResponse = requests.post("https://apistore.datasparkanalytics.com:8243/odma
  }
 ) 
 
-ODesult = [ast.literal_eval(json.dumps(i)) for i in queryResponse.json()] 
+ODResult = [ast.literal_eval(json.dumps(i)) for i in queryResponse.json()] 
 
 print ODResult
