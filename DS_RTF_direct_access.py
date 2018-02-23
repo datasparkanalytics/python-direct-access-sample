@@ -14,35 +14,20 @@ tokenResponse = requests.post("https://apistore.datasparkanalytics.com/token",
 token = tokenResponse.json()['access_token'] 
 
 queryBody = {
-	"date": "2017-12-24",
-	"location": {
-		"locationType": "locationHierarchyLevel",
-		"levelType": "staypoint_subzone",
-		"id": "SRSZ03"
-	},
-	"queryGranularity": {
-		"type": "period",
-		"period": "P1D"
-	},
-	"aggregations": [{
-		"metric": "total_stays",
-		"type": "longSum",
-		"describedAs": "total_stay"
-	}, {
-		"metric": "sum_stay_duration",
-		"type": "longSum",
-		"describedAs": "total_stay_duration"
-	}],
-	"filter": {
-		"type": "selector",
-		"dimension": "agent_gender",
-		"value": "M"
-	},
-	"dimensionFacets": ["agent_home_planningregion"]
+  "location": {
+    "locationType": "locationHierarchyLevel",
+    "levelType": "subzone",
+    "id": "OTSZ02"  },
+  "aggregations": [
+    {
+      "metric": "unique_agents",
+      "type": "hyperUnique"
+    }  
+  ]
 }
 
 # token variable is a valid access token (see Getting Started) 
-queryResponse = requests.post("https://apistore.datasparkanalytics.com:8243/staypoint/v2/query",
+queryResponse = requests.post("https://apistore.datasparkanalytics.com:8243/realtimefootfall/v2/query",
  data = json.dumps(queryBody),
  headers = {
    'Authorization': 'Bearer ' + token,
@@ -50,6 +35,6 @@ queryResponse = requests.post("https://apistore.datasparkanalytics.com:8243/stay
  }
 ) 
 
-StaypointResult = [ast.literal_eval(json.dumps(i)) for i in queryResponse.json()] 
+FootfallResult = [ast.literal_eval(json.dumps(i)) for i in queryResponse.json()] 
 
-print StaypointResult
+print FootfallResult
